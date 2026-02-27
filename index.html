@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>抽選結果発表</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP";
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:
+    radial-gradient(900px 500px at 50% 20%, rgba(255,215,0,.25), transparent 60%),
+    radial-gradient(900px 500px at 80% 80%, rgba(59,130,246,.25), transparent 60%),
+    linear-gradient(180deg,#060b1f,#0d1f35);
+  color:white;
+  overflow:hidden;
+}
+.card{
+  width:min(750px,95%);
+  padding:60px 24px;
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
+  text-align:center;
+  box-shadow:0 40px 100px rgba(0,0,0,.6);
+  backdrop-filter:blur(12px);
+}
+h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+.sub{
+  color:#cbd5e1;
+  margin-bottom:30px;
+  line-height:1.8;
+}
+.count{
+  font-size:80px;
+  font-weight:900;
+  color:#ffd700;
+  margin:20px 0;
+  text-shadow:0 0 40px rgba(255,215,0,.8);
+}
+.btn{
+  display:inline-block;
+  padding:18px 40px;
+  border-radius:16px;
+  background:linear-gradient(180deg,#60a5fa,#3b82f6);
+  color:white;
+  font-weight:900;
+  text-decoration:none;
+  font-size:18px;
+  box-shadow:0 20px 60px rgba(59,130,246,.5);
+}
+.loading{
+  margin-top:20px;
+  font-size:14px;
+  opacity:.7;
+  display:none;
+}
+.spark{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:gold;
+  border-radius:50%;
+  animation:rise 4s linear infinite;
+}
+@keyframes rise{
+  from{transform:translateY(20vh);opacity:1}
+  to{transform:translateY(-120vh);opacity:0}
+}
+</style>
+</head>
+<body>
+
+<script>
+for(let i=0;i<50;i++){
+  let s=document.createElement("div");
+  s.className="spark";
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDelay=Math.random()*5+"s";
+  s.style.opacity=Math.random();
+  document.body.appendChild(s);
+}
+</script>
+
+<div class="card">
+  <h1>抽選結果の発表</h1>
+  <p class="sub">
+    エントリー情報を確認しました。<br>
+    結果を表示します。
+  </p>
+
+  <div class="count" id="count">3</div>
+
+  <a class="btn" onclick="goWin()">結果を見る</a>
+
+  <div class="loading" id="loading">
+    結果を確認中です...
+  </div>
+</div>
+
+<script>
+let c=3;
+let el=document.getElementById("count");
+
+let timer=setInterval(()=>{
+  c--;
+  el.textContent=c;
+  if(c<=0){
+    clearInterval(timer);
+    el.textContent="🎉";
+  }
+},1000);
+
+function goWin(){
+  document.getElementById("loading").style.display="block";
+  setTimeout(()=>{
+    window.location.href="win.html";
+  },1500);
+}
+</script>
+
+</body>
+</html>
