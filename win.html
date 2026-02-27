@@ -5,7 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>当選おめでとうございます</title>
 <meta name="robots" content="noindex,nofollow">
+
 <style>
+:root{
+  --bg1:#0b1020;
+  --bg2:#081326;
+  --green:#22c55e;
+  --green2:#16a34a;
+}
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP";
@@ -13,21 +21,26 @@ body{
   display:grid;
   place-items:center;
   padding:24px;
-  background:linear-gradient(180deg,#0b1020,#081326);
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
   color:white;
 }
+
 .card{
-  width:min(700px,95%);
+  width:min(720px,95%);
   padding:50px 24px;
   border-radius:20px;
   background:rgba(255,255,255,.06);
   text-align:center;
   box-shadow:0 30px 90px rgba(0,0,0,.6);
+  backdrop-filter:blur(10px);
 }
+
 h1{
-  font-size:28px;
+  font-size: clamp(24px,4vw,34px);
   margin-bottom:10px;
+  font-weight:900;
 }
+
 .badge{
   display:inline-block;
   margin:12px 0;
@@ -36,17 +49,65 @@ h1{
   background:rgba(255,255,255,.1);
   font-size:13px;
 }
+
 .amount{
-  font-size:48px;
+  font-size: clamp(36px,7vw,60px);
   font-weight:900;
-  color:#22c55e;
+  color:var(--green);
   margin:20px 0;
+  text-shadow:0 0 30px rgba(34,197,94,.6);
 }
-.linebtn{
-  margin-top:20px;
+
+.note{
+  margin-bottom:26px;
+  line-height:1.8;
+  font-size:14px;
+  color:#d1d5db;
+}
+
+/* ===== 統一CTAボタン ===== */
+
+.cta{
+  display:inline-flex;
+  flex-direction:column;     /* 常に縦並び */
+  align-items:center;
+  justify-content:center;
+  padding:18px 34px;
+  border-radius:16px;
+  background:linear-gradient(180deg,var(--green),var(--green2));
+  color:#06210f;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 25px 60px rgba(34,197,94,.35);
+  min-width:260px;
+  text-align:center;
+  transition:.2s;
+}
+
+.cta:hover{
+  transform:translateY(-2px);
+}
+
+.cta-main{
+  font-size:18px;
+  line-height:1.3;
+}
+
+.cta-sub{
+  font-size:13px;
+  margin-top:4px;
+  opacity:.85;
+}
+
+.foot{
+  margin-top:22px;
+  font-size:12px;
+  opacity:.6;
+  line-height:1.8;
 }
 </style>
 </head>
+
 <body>
 
 <div class="card">
@@ -56,14 +117,19 @@ h1{
 
   <div class="amount">350,000円</div>
 
-  <p>下のボタンからお受け取りください。</p>
+  <p class="note">
+    お受け取りには公式LINEの追加が必要です。<br>
+    下のボタンからお手続きください。
+  </p>
 
-  <div class="linebtn">
-    <a href="https://lin.ee/Ildy1CZ" target="_blank">
-      <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png"
-           alt="友だち追加"
-           height="44">
-    </a>
+  <!-- 統一ボタン -->
+  <a class="cta" href="https://lin.ee/Ildy1CZ" target="_blank">
+    <span class="cta-main">ここから受け取り</span>
+    <span class="cta-sub">（公式LINEへ移動します。）</span>
+  </a>
+
+  <div class="foot">
+    ※一定時間を過ぎると受け取り権利は無効になる場合があります。
   </div>
 </div>
 
